@@ -31,4 +31,21 @@ class TaskController extends Controller
     {
         return Task::latest()->first();
     }
+
+    public function get(int $id)
+    {
+        return Task::find($id)->first();
+    }
+
+    public function update(Request $request, int $id)
+    {
+        $task =  Task::find($id)->first();
+
+        $task->title = $request->input('title');
+        $task->description = $request->input('description');
+        $task->selected_date_time = $request->input('selected_date_time');
+        $task->save();
+
+        return response()->json(['message' => 'Task updated successfully', 'task' => $task]);
+    }
 }
