@@ -60,17 +60,12 @@ class TaskController extends Controller
             return response()->json(['message' => 'Task deleted successfully']);
         }
 
-        public function update(Request $request, int $id)
+        public function complete(int $id)
     {
         $task =  Task::find($id)->first();
-
-        $task->title = $request->input('title');
-        $task->description = $request->input('description');
-        $task->selected_date_time = $request->input('selected_date_time');
-        $task->status = $request->input('status');
-
+        $task->status = 1;
         $task->save();
 
-        return response()->json(['message' => 'Task updated successfully', 'task' => $task]);
+        return response()->json(['message' => 'Task completed successfully', 'task' => $task]);
     }
 }
