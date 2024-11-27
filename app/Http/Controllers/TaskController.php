@@ -34,7 +34,7 @@ class TaskController extends Controller
 
     public function get(int $id)
     {
-        return Task::find($id)->first();
+        return Task::find($id);
     }
 
     public function update(Request $request, int $id)
@@ -48,4 +48,12 @@ class TaskController extends Controller
 
         return response()->json(['message' => 'Task updated successfully', 'task' => $task]);
     }
+
+        public function delete(int $id)
+        {
+            $task =  Task::find($id)->first();
+            $task->delete();
+
+            return response()->json(['message' => 'Task deleted successfully']);
+        }
 }

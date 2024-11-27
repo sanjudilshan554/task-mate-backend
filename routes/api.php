@@ -14,3 +14,4 @@ Route::post('/tasks', [TaskController::class, 'store']);
 Route::get('/last-saved-task', [TaskController::class, 'lastSavedTask']);
 Route::get('/get/{id}', [TaskController::class, 'get']);
 Route::put('/update/{id}', [TaskController::class, 'update']);
+Route::delete('/delete/{id}', [TaskController::class, 'delete']);
