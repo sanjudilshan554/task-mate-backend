@@ -13,7 +13,6 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
-
         $request->validate([
             'title' => 'required|string|max:255',
         ]);
@@ -40,7 +39,7 @@ class TaskController extends Controller
 
     public function update(Request $request, int $id)
     {
-        $task =  Task::find($id)->first();
+        $task =  Task::find($id);
 
         $task->title = $request->input('title');
         $task->description = $request->input('description');
@@ -54,7 +53,7 @@ class TaskController extends Controller
 
         public function delete(int $id)
         {
-            $task =  Task::find($id)->first();
+            $task =  Task::find($id);
             $task->delete();
 
             return response()->json(['message' => 'Task deleted successfully']);
@@ -62,7 +61,7 @@ class TaskController extends Controller
 
         public function complete(int $id)
     {
-        $task =  Task::find($id)->first();
+        $task =  Task::find($id);
         $task->status = 1;
         $task->save();
 
