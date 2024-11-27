@@ -9,9 +9,14 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/tasks', [TaskController::class, 'index']);
-Route::post('/tasks', [TaskController::class, 'store']);
-Route::get('/last-saved-task', [TaskController::class, 'lastSavedTask']);
-Route::get('/get/{id}', [TaskController::class, 'get']);
-Route::put('/update/{id}', [TaskController::class, 'update']);
-Route::delete('/delete/{id}', [TaskController::class, 'delete']);
+// Task Apis
+Route::prefix('task')->group(function () {
+    Route::get('/all', [TaskController::class, 'all']);
+    Route::post('/store', [TaskController::class, 'store']);
+    Route::get('/last-saved-task', [TaskController::class, 'lastSavedTask']);
+    Route::get('/get/{id}', [TaskController::class, 'get']);
+    Route::put('/update/{id}', [TaskController::class, 'update']);
+    Route::delete('/delete/{id}', [TaskController::class, 'delete']);
+    Route::get('/complete/{id}', [TaskController::class, 'complete']);
+});
+
