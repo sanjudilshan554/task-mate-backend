@@ -12,8 +12,8 @@ Route::get('/user', function (Request $request) {
 
 // Task
 Route::prefix('task')->group(function () {
-    Route::get('/all', [TaskController::class, 'all']);
-    Route::post('/store', [TaskController::class, 'store']);
+    Route::get('/all/{user_id}', [TaskController::class, 'all']);
+    Route::post('/store/{user_id}', [TaskController::class, 'store']);
     Route::get('/last-saved-task', [TaskController::class, 'lastSavedTask']);
     Route::get('/get/{id}', [TaskController::class, 'get']);
     Route::put('/update/{id}', [TaskController::class, 'update']);
@@ -27,6 +27,11 @@ Route::prefix('user')->group(function () {
     Route::post('/login', [UserController::class, 'login']);
     Route::put('/update/{id}', [UserController::class, 'update']);
     Route::delete('/delete/{id}', [UserController::class, 'delete']);
+
+    Route::prefix('theme')->group(function () {
+        Route::post('/update/{user_id}', [UserController::class, 'themeUpdate']);
+    });
+
 });
 
 

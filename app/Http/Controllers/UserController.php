@@ -83,4 +83,17 @@ class UserController extends Controller
         ], 201);
     }
 
+    public function themeUpdate(int $id, Request $request)
+    {
+         $user = User::find($id);
+         $user->theme = $request->theme;
+         $user->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Theme updated successfully',
+            'data' => $user,
+        ], 201);
+    }
+
 }

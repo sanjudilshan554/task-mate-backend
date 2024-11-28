@@ -13,12 +13,19 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, SoftDeletes;
 
+
+    const THEME = [
+        'DARK_MODE' => 1,
+        'LIGHT_MODE' => 0
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
+        'theme',
         'name',
         'email',
         'password',

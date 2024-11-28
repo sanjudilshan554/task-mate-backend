@@ -6,18 +6,19 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    public function all()
+    public function all(int $user_id)
     {
-        return Task::orderBy('selected_date_time', 'desc')->get(); // Return all tasks
+        return Task::where('user_id', $user_id)->orderBy('selected_date_time', 'desc')->get(); // Return all tasks
     }
 
-    public function store(Request $request)
+    public function store(int $user_id, Request $request)
     {
         $request->validate([
             'title' => 'required|string|max:255',
         ]);
 
         $task = Task::create([
+            'user_id' => $user_id,
             'title' => $request['title'],
             'description' => $request['description'],
             'selected_date_time' => $request['reminder_time'],

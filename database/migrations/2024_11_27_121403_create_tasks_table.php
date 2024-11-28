@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description')->nullable();
             $table->string('selected_date_time')->nullable();
+            $table->bigInteger('user_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
