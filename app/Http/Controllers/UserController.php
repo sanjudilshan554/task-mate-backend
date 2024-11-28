@@ -52,8 +52,35 @@ class UserController extends Controller
         return response()->json([
             'success' => false,
             'message' => 'Invalid email or password',
-        ], 401);
+        ], 200);
     }
 }
+
+    public function update(int $id, Request $request)
+    {
+         $user = User::find($id);
+
+         $user->name = $request->name;
+         $user->email = $request->email;
+         $user->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'User updated successfully',
+            'data' => $user,
+        ], 201);
+    }
+
+    public function delete(int $id)
+    {
+         $user = User::find($id);
+         $user->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'User account deleted successfully',
+            'data' => $user,
+        ], 201);
+    }
 
 }

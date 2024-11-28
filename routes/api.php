@@ -25,6 +25,8 @@ Route::prefix('task')->group(function () {
 Route::prefix('user')->group(function () {
     Route::post('/store', [UserController::class, 'store']);
     Route::post('/login', [UserController::class, 'login']);
+    Route::put('/update/{id}', [UserController::class, 'update']);
+    Route::delete('/delete/{id}', [UserController::class, 'delete']);
 });
 
 
